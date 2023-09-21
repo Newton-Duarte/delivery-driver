@@ -16,16 +16,9 @@ public class AudioController : MonoBehaviour
     [SerializeField] AudioClip fxFailure;
     [SerializeField] AudioClip fxImpact;
 
-    // Start is called before the first frame update
     void Start()
     {
         PlayMusicClip(musicClip);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void PlayMusicClip(AudioClip clip)
@@ -33,5 +26,30 @@ public class AudioController : MonoBehaviour
         musicSource.clip = clip;
         musicSource.loop = true;
         musicSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        musicSource.Stop();
+    }
+
+    public void CollectFX()
+    {
+        fxSource.PlayOneShot(fxCollect);
+    }
+
+    public void DeliveryFX()
+    {
+        fxSource.PlayOneShot(fxDelivery);
+    }
+
+    public void ImpactFX()
+    {
+        fxSource.PlayOneShot(fxImpact);
+    }
+
+    public void SuccessFX()
+    {
+        fxSource.PlayOneShot(fxSuccess);
     }
 }
