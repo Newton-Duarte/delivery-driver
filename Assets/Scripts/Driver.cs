@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Driver : MonoBehaviour
@@ -9,11 +7,16 @@ public class Driver : MonoBehaviour
     [SerializeField] Color32 isDeliveringColor = Color.white;
 
     SpriteRenderer spriteRenderer;
-    bool hasPackage = false;
+    Package package;
+
+    GameController _gameController;
+    AudioController _audioController;
 
     // Start is called before the first frame update
     void Start()
     {
+        _gameController = FindAnyObjectByType<GameController>();
+        _audioController = FindAnyObjectByType<AudioController>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -27,19 +30,40 @@ public class Driver : MonoBehaviour
         transform.Translate(0, moveAmount, 0);
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        _audioController.ImpactFX();
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Package" && !hasPackage)
+        if (collision.tag == "Package" && !package)
         {
-            hasPackage = true;
+            package = collision.gameObject.GetComponent<Package>();
+            package.customer.gameObject.SetActive(true);
             spriteRenderer.color = isDeliveringColor;
-            Destroy(collision.gameObject);
+            _audioController.CollectFX();
+            collision.gameObject.SetActive(false);
         }
 
-        if (collision.tag == "Customer" && hasPackage)
+        if (collision.tag == "Customer" && package != null)
         {
-            hasPackage = false;
-            spriteRenderer.color = Color.white;
+            var customer = collision.gameObject.GetComponent<Customer>();
+            if (package.customer.id == customer.id)
+            {
+                _gameController.DeliverPackage(package);
+                spriteRenderer.color = Color.white;
+                if (customer.package != null)
+                {
+                    customer.package.SetActive(true);
+                    package = null;
+                    Destroy(customer.gameObject);
+                }
+                else
+                {
+                    _gameController.GameOver();
+                }
+            }
         }
     }
 }
