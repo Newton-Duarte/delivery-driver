@@ -49,11 +49,11 @@ MonoBehaviour:
   musicSource: {fileID: 4764087744038563874}
   fxSource: {fileID: 8672439996695548890}
   musicClip: {fileID: 8300000, guid: b0e7d62f1692f6b498938e57623f35a8, type: 3}
-  fxCollect: {fileID: 0}
-  fxDelivery: {fileID: 0}
-  fxSuccess: {fileID: 0}
-  fxFailure: {fileID: 0}
-  fxImpact: {fileID: 0}
+  fxCollect: {fileID: 8300000, guid: 39997fef95326f74196361dd478354b4, type: 3}
+  fxDelivery: {fileID: 8300000, guid: 2c7725d436f5e224b944ac9e40051ab4, type: 3}
+  fxSuccess: {fileID: 8300000, guid: 80ca9a5078f0df34d9121eaada388a80, type: 3}
+  fxFailure: {fileID: 8300000, guid: 7f34ae762ae02cd43819f85e26150fcd, type: 3}
+  fxImpact: {fileID: 8300000, guid: 4753ad3afed05c94e976c6cf78160676, type: 3}
 --- !u!1 &2705246886480710624
 GameObject:
   m_ObjectHideFlags: 0
