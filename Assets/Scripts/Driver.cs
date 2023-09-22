@@ -3,11 +3,14 @@ using UnityEngine;
 public class Driver : MonoBehaviour
 {
     [SerializeField] float steerSpeed = 300f;
-    [SerializeField] float moveSpeed = 20f;
-    [SerializeField] Color32 isDeliveringColor = Color.white;
+    [SerializeField] float regularSpeed = 20f;
+    [SerializeField] float boostSpeed = 30f;
+    [SerializeField] float slowSpeed = 15f;
+    [SerializeField] float currentSpeed = 20f;
+    [SerializeField] GameObject pointer;
 
-    SpriteRenderer spriteRenderer;
     Package package;
+    Transform customerPosition;
 
     GameController _gameController;
     AudioController _audioController;
@@ -17,22 +20,27 @@ public class Driver : MonoBehaviour
     {
         _gameController = FindAnyObjectByType<GameController>();
         _audioController = FindAnyObjectByType<AudioController>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
         float steerAmount = Input.GetAxis("Horizontal") * steerSpeed * Time.deltaTime;
-        float moveAmount = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+        float moveAmount = Input.GetAxis("Vertical") * currentSpeed * Time.deltaTime;
 
         transform.Rotate(0, 0, -steerAmount);
         transform.Translate(0, moveAmount, 0);
+
+        if (pointer.activeSelf)
+        {
+            pointer.transform.right = customerPosition.position - pointer.transform.position;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         _audioController.ImpactFX();
+        currentSpeed = slowSpeed;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -41,8 +49,10 @@ public class Driver : MonoBehaviour
         {
             package = collision.gameObject.GetComponent<Package>();
             package.customer.gameObject.SetActive(true);
-            spriteRenderer.color = isDeliveringColor;
+            customerPosition = package.customer.transform;
+            Debug.Log($"The customer position is: {customerPosition.localPosition}");
             _audioController.CollectFX();
+            pointer.SetActive(true);
             collision.gameObject.SetActive(false);
         }
 
@@ -51,8 +61,8 @@ public class Driver : MonoBehaviour
             var customer = collision.gameObject.GetComponent<Customer>();
             if (package.customer.id == customer.id)
             {
+                pointer.SetActive(false);
                 _gameController.DeliverPackage(package);
-                spriteRenderer.color = Color.white;
                 if (customer.package != null)
                 {
                     customer.package.SetActive(true);
@@ -64,6 +74,12 @@ public class Driver : MonoBehaviour
                     _gameController.GameOver();
                 }
             }
+        }
+
+        if (collision.tag == "Boost")
+        {
+            _audioController.BoostFX();
+            currentSpeed = boostSpeed;
         }
     }
 }
