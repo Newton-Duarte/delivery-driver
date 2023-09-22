@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 324180900814078251}
   - component: {fileID: 2033329712561225669}
   - component: {fileID: 2111993893463403378}
+  - component: {fileID: 4372019589138462751}
   m_Layer: 0
   m_Name: DeliveryBox
   m_TagString: Package
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -4205778639579987450, guid: d29c935af0127314dbe903c8ac348acc, type: 3}
+  m_Sprite: {fileID: 8015087636642835202, guid: ab8bb39370a021d4d910b8aad4f4be49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -135,3 +136,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customer: {fileID: 0}
+--- !u!114 &4372019589138462751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505169657811651807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159894c42180cd14c868c0ca54eec2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
