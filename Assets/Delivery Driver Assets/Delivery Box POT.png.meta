@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d29c935af0127314dbe903c8ac348acc
+guid: ab8bb39370a021d4d910b8aad4f4be49
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4205778639579987450
-    second: Delivery Box (1)_0
+      213: 8015087636642835202
+    second: Delivery Box POT_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Delivery Box (1)_0
+      name: Delivery Box POT_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 189
-        height: 200
+        x: 36
+        y: 27
+        width: 191
+        height: 201
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 602c8e74c9212a5c0800000000000000
-      internalID: -4205778639579987450
+      spriteID: 20ba8b16dbf4b3f60800000000000000
+      internalID: 8015087636642835202
       vertices: []
       indices: 
       edges: []
@@ -141,7 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Delivery Box (1)_0: -4205778639579987450
+      Delivery Box POT_0: 8015087636642835202
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
