@@ -54,6 +54,7 @@ MonoBehaviour:
   fxSuccess: {fileID: 8300000, guid: 80ca9a5078f0df34d9121eaada388a80, type: 3}
   fxFailure: {fileID: 8300000, guid: 7f34ae762ae02cd43819f85e26150fcd, type: 3}
   fxImpact: {fileID: 8300000, guid: 4753ad3afed05c94e976c6cf78160676, type: 3}
+  fxBoost: {fileID: 8300000, guid: a2d5f14ce1a04f446a56811f10eb030c, type: 3}
 --- !u!1 &2705246886480710624
 GameObject:
   m_ObjectHideFlags: 0

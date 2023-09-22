@@ -15,6 +15,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] AudioClip fxSuccess;
     [SerializeField] AudioClip fxFailure;
     [SerializeField] AudioClip fxImpact;
+    [SerializeField] AudioClip fxBoost;
 
     void Start()
     {
@@ -51,5 +52,10 @@ public class AudioController : MonoBehaviour
     public void SuccessFX()
     {
         fxSource.PlayOneShot(fxSuccess);
+    }
+
+    public void BoostFX()
+    {
+        fxSource.PlayOneShot(fxBoost);
     }
 }
