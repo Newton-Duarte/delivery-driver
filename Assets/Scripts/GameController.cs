@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     [SerializeField] List<Package> packagesList = new();
+    [SerializeField] TextMeshProUGUI txtDeliveries;
 
     AudioController _audioController;
+    int deliveriesCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,8 @@ public class GameController : MonoBehaviour
 
     public void DeliverPackage(Package package)
     {
+        deliveriesCount++;
+        txtDeliveries.SetText(deliveriesCount.ToString());
         packagesList.Remove(package);
         Destroy(package.gameObject);
         _audioController.DeliveryFX();
@@ -29,7 +35,6 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        _audioController.StopMusic();
-        _audioController.SuccessFX();
+        SceneManager.LoadScene(2);
     }
 }
