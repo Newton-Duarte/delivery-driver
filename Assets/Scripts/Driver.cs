@@ -4,7 +4,7 @@ public class Driver : MonoBehaviour
 {
     [SerializeField] float steerSpeed = 300f;
     [SerializeField] float regularSpeed = 20f;
-    [SerializeField] float boostSpeed = 30f;
+    [SerializeField] float boostSpeed = 25f;
     [SerializeField] float slowSpeed = 15f;
     [SerializeField] float currentSpeed = 20f;
     [SerializeField] GameObject pointer;
@@ -37,10 +37,16 @@ public class Driver : MonoBehaviour
         }
     }
 
+    private void ResetSpeed()
+    {
+        currentSpeed = regularSpeed;
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         _audioController.ImpactFX();
         currentSpeed = slowSpeed;
+        Invoke(nameof(ResetSpeed), 4);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -50,20 +56,19 @@ public class Driver : MonoBehaviour
             package = collision.gameObject.GetComponent<Package>();
             package.customer.gameObject.SetActive(true);
             customerPosition = package.customer.transform;
-            Debug.Log($"The customer position is: {customerPosition.localPosition}");
             _audioController.CollectFX();
             pointer.SetActive(true);
             collision.gameObject.SetActive(false);
         }
 
-        if (collision.tag == "Customer" && package != null)
+        if (collision.tag == "Customer" && package)
         {
             var customer = collision.gameObject.GetComponent<Customer>();
             if (package.customer.id == customer.id)
             {
                 pointer.SetActive(false);
                 _gameController.DeliverPackage(package);
-                if (customer.package != null)
+                if (customer.package)
                 {
                     customer.package.SetActive(true);
                     package = null;
@@ -80,6 +85,7 @@ public class Driver : MonoBehaviour
         {
             _audioController.BoostFX();
             currentSpeed = boostSpeed;
+            Invoke(nameof(ResetSpeed), 4);
         }
     }
 }
