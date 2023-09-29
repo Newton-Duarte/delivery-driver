@@ -58,4 +58,9 @@ public class AudioController : MonoBehaviour
     {
         fxSource.PlayOneShot(fxBoost);
     }
+
+    public void SetMusicPitch(float pitch)
+    {
+        musicSource.pitch = pitch;
+    }
 }
